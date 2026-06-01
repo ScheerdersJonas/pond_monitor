@@ -11,3 +11,17 @@ class PowerStream:
         reading["timestamp"] = datetime.now()
         self.buffer.append(reading)
     
+    def mean(self, field):
+        if not self.buffer:
+            return None
+        return sum(r[field] for r in self.buffer) / len(self.buffer)
+    
+    def max_value(self, field):
+        if not self.buffer:
+            return None
+        return max(r[field] for r in self.buffer)
+    
+    def min_value(self, field):
+        if not self.buffer:
+            return None
+        return min(r[field] for r in self.buffer)
