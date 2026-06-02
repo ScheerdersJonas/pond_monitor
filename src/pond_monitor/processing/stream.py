@@ -1,9 +1,11 @@
 from collections import deque
 from datetime import datetime
+import logging
 
+logger = logging.getLogger(__name__)
 
 class PowerStream:
-    def __init__(self, plug, maxlen=60):
+    def __init__(self, plug: str, maxlen: int = 60):
         self.plug = plug
         self.buffer = deque(maxlen=maxlen)
 
