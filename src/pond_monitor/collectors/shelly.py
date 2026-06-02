@@ -4,9 +4,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 class ShellyPlug:
-    def __init__(self, ip_address, name):
+    def __init__(self, ip_address: str, name: str, device_id: str = "0"):
         self.ip_address = ip_address
         self.name = name
+        self.device_id = device_id
         self.base_url = f"http://{ip_address}/rpc" 
 
     def _make_request(self, endpoint):
@@ -22,10 +23,10 @@ class ShellyPlug:
             return None
 
     def get_status(self):
-        return self._make_request("Switch.GetStatus?id=0")
+        return self._make_request(f"Switch.GetStatus?id={self.device_id}")
 
     def turn_on(self):
-        return self._make_request("Switch.Set?id=0&on=true")
+        return self._make_request(f"Switch.Set?id={self.device_id}&on=true")
 
     def turn_off(self):
-        return self._make_request("Switch.Set?id=0&on=false")   
+        return self._make_request(f"Switch.Set?id={self.device_id}&on=false")   
