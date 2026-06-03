@@ -25,6 +25,7 @@ class DuckDbStorage(Storage):
         self.conn.execute("""
             CREATE TABLE IF NOT EXISTS readings (
                 timestamp TIMESTAMP,
+                plug_name VARCHAR,
                 apower DOUBLE,
                 voltage DOUBLE,
                 current DOUBLE
@@ -33,6 +34,6 @@ class DuckDbStorage(Storage):
 
     def write(self, data):
         self.conn.execute(
-            "INSERT INTO readings VALUES (?, ?, ?, ?)",
-            [data["timestamp"], data["apower"], data["voltage"], data["current"]]
+            "INSERT INTO readings VALUES (?, ?, ?, ?, ?)",
+            [data["timestamp"], data["plug_name"], data["apower"], data["voltage"], data["current"]]
         )

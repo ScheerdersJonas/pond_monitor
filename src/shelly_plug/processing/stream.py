@@ -11,6 +11,7 @@ class PowerStream:
 
     def add_reading(self, reading):
         reading["timestamp"] = datetime.now()
+        reading["plug_name"] = self.plug
         self.buffer.append(reading)
     
     def mean(self, field):
