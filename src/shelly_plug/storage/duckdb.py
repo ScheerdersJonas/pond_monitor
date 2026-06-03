@@ -36,6 +36,11 @@ class DuckDbStorage(Storage):
     def write(self, data):
         self.conn.execute(
             "INSERT INTO readings VALUES (?, ?, ?, ?, ?)",
-            [data["timestamp"], data["plug_name"], data["apower"], data["voltage"], data["current"]]
+            [
+                data["timestamp"],
+                data["plug_name"],
+                data["apower"],
+                data["voltage"],
+                data["current"],
+            ],
         )
-
