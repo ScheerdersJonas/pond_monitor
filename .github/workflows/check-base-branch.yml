@@ -1,0 +1,16 @@
+# .github/workflows/check-base-branch.yml
+name: Enforce base branch
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-base:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure PR targets main
+        run: |
+          if [ "${{ github.base_ref }}" != "main" ]; then
+            echo "PRs must target main"
+            exit 1
+          fi
